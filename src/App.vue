@@ -1,5 +1,7 @@
 <template>
-  <div class="example">{{ msg }}</div>
+  <div class="example">
+    <h3 class="title">{{ msg }}</h3>
+  </div>
 </template>
 
 <script>
@@ -12,8 +14,8 @@ export default {
 }
 </script>
 
-<style>
-.example {
-  color: red;
-}
+<style lang="stylus" scoped>
+.example
+  .title
+    color red
 </style>
