@@ -1,4 +1,3 @@
-# 那些花儿，从零开始构建Vue开发环境（webpack4+Vue+Babel+git hooks...）
 
 > 从零搭建Vue开发环境：webpack4 + vue-loader + babel-loader v8 + Babel v7 + eslint + git hooks + editorconfig
 
@@ -845,11 +844,14 @@ module.exports = {
 
 ```
 
-## webpack拆分及更多配置留到下一章
+## webpack配置拆分、api组织、Vue自定义plugin项目中应用及其他更多配置留到下一章
 
 每当到了夜晚时 就是内心最安静的时候 心无杂念。
 
 ## 源码地址
 https://github.com/Lwenli1224/webpack-vue-loader-structure.git
+
+## 掘金地址
+https://juejin.im/user/59aaafd9518825242238fbd6
 
 ![珠峰公众号](https://user-gold-cdn.xitu.io/2018/12/11/1679c4ea744a4727?w=1050&h=620&f=jpeg&s=97754)
