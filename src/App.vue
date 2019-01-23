@@ -18,4 +18,5 @@ export default {
 .example
   .title
     color red
+    transform translate(10px, 50px)
 </style>

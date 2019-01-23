@@ -38,15 +38,42 @@ module.exports = {
         test: /\.css$/,
         use: [
           devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       },
       {
         test: /\.styl(us)?$/,
         use: [
           devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'stylus-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'stylus-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       }
     ]
