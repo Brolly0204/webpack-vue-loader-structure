@@ -2,6 +2,7 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const resolve = dir => path.join(__dirname, '..', dir)
 
@@ -10,7 +11,7 @@ const devMode = process.env.NODE_ENV === 'development'
 module.exports = {
   entry: resolve('src/main.js'),
   output: {
-    filename: '[name].js',
+    filename: '[name].[hash:6].js',
     path: resolve('dist')
   },
   module: {
@@ -75,8 +76,27 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|svg|jpe?g)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192
+        }
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader']
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      // 默认将node_modules中依赖打包到venders.js
+      chunks: 'all'
+    },
+    // 将webpack运行时代码打包到runtime.js
+    runtimeChunk: true
   },
   devServer: {
     host: '0.0.0.0',
@@ -96,5 +116,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve('index.html')
     })
+    // new CleanWebpackPlugin(['dist'], {
+    //   root: path.join(__dirname, '../')
+    // })
   ]
 }
