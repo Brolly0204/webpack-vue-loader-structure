@@ -1,4 +1,4 @@
-# 从零开始打造Vue开发环境（webpack4+vue-loader）
+# 那些花儿，从零开始构建Vue工程（webpack4+vue-loader）
 
 > 从零搭建Vue开发环境：webpack4 + vue-loader + koa2 + babel-loader v8 + Babel v7 + eslint + git hooks + editorconfig
 
