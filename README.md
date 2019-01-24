@@ -595,6 +595,93 @@ plugins: [
 
 ![](https://user-gold-cdn.xitu.io/2019/1/24/1687e079a6dbe856?w=386&h=220&f=png&s=15072)
 
+## 清理dist目录
+生产环境下 为什么要清理dist目录 因为我们的输出文件为了缓存再文件名拼接上hash值，只要文件有改动就会产生新的hash值，dist目录下每次都会新增一份输出文件 但我们只要编译后的最终的那个就可以了
+
+npm run build 三次 dist目录如下
+```
+dist
+├── app.bundle.0e380cea371d050137cd.js
+├── app.bundle.259c34c1603489ef3572.js
+├── app.bundle.e56abf8d6e5742c78c4b.js
+├── index.html
+└── style.css
+```
+
+
+```
+module.exports = {
+    output: {
+    filename: '[name].[hash:6].js',
+    path: resolve('dist')
+  },
+}
+```
+
+### 利用webpack插件清理
+clean-webpack-plugin
+
+```
+npm i clean-webpack-plugin -D
+```
+
+webpack配置
+
+```
+// build/webpack.config.js
+
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+module.exports = {
+  plugins: [
+    new CleanWebpackPlugin(['dist'], {
+      root: path.join(__dirname, '../')
+    })
+  ]
+}
+```
+
+然后运行npm run build 每次打包前就会把之前的dist目录清理下
+
+### 第二种方式 用rimraf命令 清理dist目录
+
+rimraf
+
+The UNIX command rm -rf for node.
+
+```
+npm i rimraf -D
+```
+
+修改package.json
+
+```
+"scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --config build/webpack.config.js --progress --mode production",
+}
+
+```
+
+npm run build 也是ok的
+
+## .editorconfig
+在不同的编辑器和IDEs中为多个从事同一项目的开发人员保持一致的编码风格。
+
+```
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
+https://editorconfig.org/
+
 ## 代码校验 (Linting)
 
 安装eslint
